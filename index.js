@@ -18,7 +18,7 @@ app.post('/', createPerson)
 
 app.put('/:id', updatePerson)
 
-app.get('/', getSinglePerson)
+app.get('/:id', getSinglePerson)
 app.delete('/:id', deletePerson)
 
 app.listen(8000, () => {

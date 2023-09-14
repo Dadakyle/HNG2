@@ -51,6 +51,13 @@ export const updatePerson = async(req, res) => {
 export const getSinglePerson = async (req, res) => {
   try {
     const {id} = req.params
+    const schema = Joi.object({
+      id: Joi.string().required()
+    })
+    const {value, error} = schema.validate({id})
+    if (error != null) {
+      return res.status(400).send({ message: error.message, status: false })
+    }
     const data = await Person.findById(id)
     res.status(200).send({data, message: "successful", status: true})
   } catch (error) {
